@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MindCare - Mental Wellness Companion</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="shell">
+
+  <aside class="side">
+    <div class="brand"><span class="logo">🌿</span><div><h1>MindCare</h1><p>Your calm space</p></div></div>
+    <nav class="tabs" role="tablist">
+      <button class="tab active" data-tab="chat"><span>💬</span><b>Chat</b></button>
+      <button class="tab" data-tab="breathe"><span>🫁</span><b>Breathe</b></button>
+      <button class="tab" data-tab="mood"><span>📈</span><b>Mood</b></button>
+      <button class="tab" data-tab="journal"><span>📝</span><b>Journal</b></button>
+      <button class="tab" data-tab="ground"><span>🖐️</span><b>Grounding</b></button>
+    </nav>
+    <div class="help">
+      <strong>Need help now?</strong>
+      <span>Emergency (India): <b>112</b></span>
+      <span>Tele-MANAS (free, 24/7): <b>14416</b></span>
+      <small>MindCare is a support tool, not a doctor or therapist.</small>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <!-- 1. CHAT -->
+    <section id="chat" class="panel active">
+      <header class="ph"><h2>💬 Talk to MindCare</h2><button id="clearChat" class="ghost">Clear</button></header>
+      <div id="log" class="log" aria-live="polite">
+        <div class="msg bot">Hi, I'm MindCare. How are you feeling today?</div>
+      </div>
+      <div class="chips">
+        <button data-q="I'm feeling anxious">Anxious</button>
+        <button data-q="I'm feeling sad and low">Sad</button>
+        <button data-q="I'm stressed about exams or work">Stressed</button>
+        <button data-q="I can't sleep well">Can't sleep</button>
+        <button data-q="I feel lonely">Lonely</button>
+      </div>
+      <form id="form" class="composer">
+        <input id="msg" placeholder="Type how you feel..." autocomplete="off" required>
+        <button type="submit" class="primary">Send</button>
+      </form>
+    </section>
+
+    <!-- 2. BREATHING -->
+    <section id="breathe" class="panel">
+      <header class="ph"><h2>🫁 Guided Breathing</h2></header>
+      <div class="center">
+        <div class="seg" id="patterns">
+          <button class="on" data-p="box">Box 4-4-4-4</button>
+          <button data-p="478">4-7-8 Calm</button>
+          <button data-p="easy">Easy 4-6</button>
+        </div>
+        <div class="orbwrap"><div id="orb" class="orb"></div><div id="orbCount" class="orbcount">4</div></div>
+        <div id="breathText" class="big">Press start when you're ready</div>
+        <div id="cycles" class="muted">Cycles: 0</div>
+        <button id="breathBtn" class="primary">Start</button>
+      </div>
+    </section>
+
+    <!-- 3. MOOD -->
+    <section id="mood" class="panel">
+      <header class="ph"><h2>📈 Mood Tracker</h2><button id="clearMood" class="ghost">Reset</button></header>
+      <div class="scroll">
+        <div class="card">
+          <p class="lead">How are you feeling right now?</p>
+          <div class="emojis" id="emojis">
+            <button data-m="1"><span>😞</span><small>Very low</small></button>
+            <button data-m="2"><span>😕</span><small>Low</small></button>
+            <button data-m="3"><span>😐</span><small>Okay</small></button>
+            <button data-m="4"><span>🙂</span><small>Good</small></button>
+            <button data-m="5"><span>😄</span><small>Great</small></button>
+          </div>
+          <input id="moodNote" placeholder="Add a short note (optional)">
+          <button id="saveMood" class="primary">Save mood</button>
+          <p id="moodMsg" class="muted"></p>
+        </div>
+        <div class="card"><h3>Last 7 check-ins</h3><div id="chart" class="chart"></div><p id="avg" class="muted"></p></div>
+        <div class="card"><h3>History</h3><ul id="moodList" class="list"></ul></div>
+      </div>
+    </section>
+
+    <!-- 4. JOURNAL -->
+    <section id="journal" class="panel">
+      <header class="ph"><h2>📝 Journal</h2></header>
+      <div class="scroll">
+        <div class="card">
+          <p class="lead" id="prompt"></p>
+          <button id="newPrompt" class="ghost small">New prompt</button>
+          <textarea id="entry" rows="5" placeholder="Write freely. It's saved only in this browser."></textarea>
+          <button id="saveEntry" class="primary">Save entry</button>
+        </div>
+        <div class="card"><h3>Your entries</h3><ul id="entries" class="list"></ul></div>
+      </div>
+    </section>
+
+    <!-- 5. GROUNDING -->
+    <section id="ground" class="panel">
+      <header class="ph"><h2>🖐️ 5-4-3-2-1 Grounding</h2><button id="gReset" class="ghost">Restart</button></header>
+      <div class="center">
+        <div class="bar"><div id="gBar"></div></div>
+        <div id="gNum" class="gnum">5</div>
+        <div id="gText" class="big">Name 5 things you can SEE</div>
+        <p id="gHint" class="muted">Look around slowly. Say each one out loud or in your head.</p>
+        <div id="gInputs" class="ginputs"></div>
+        <button id="gNext" class="primary">Next</button>
+      </div>
+    </section>
+
+  </main>
+</div>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
